@@ -1,0 +1,28 @@
+{% extends 'rango/base.html' %}
+
+{% block title_block %}
+    Logged Out
+{% endblock %}
+
+{% block body_block %}
+
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">Rango says...</h1>
+        <div>
+            <h2 class="h2">
+            {% if user.is_authenticated %}
+                howdy {{ user.username }}!
+            {% else %}
+                hey there partner!
+            {% endif %}
+            </h2>
+            <strong>{{ boldmessage }}</strong>
+        </div>
+    </div>
+</div>
+
+    <h1>Logged Out</h1>
+
+    <p>You have been successfully logged out. Thanks for spending time on Rango!</p>
+{% endblock %}

@@ -2,10 +2,11 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    About
+    Register
 {% endblock %}
 
 {% block body_block %}
+
 <div class="jumbotron p-4">
     <div class="container">
         <h1 class="jumbotron-heading">Rango says...</h1>
@@ -24,19 +25,18 @@
     </div>
 </div>
 
-<div>
-    <img src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a cat"/>
-</div>
-<button class="btn btn-primary"
-    onclick="alert('You clicked the button using inline JavaScript.');">
-    Click me - I run on vanilla JavaScript!
-</button>
+    <h1>Register for Rango</h1>
+    {% if registered %}
+        Rango says: <strong>Thank you for registering!</strong>
+        <a href="{% url 'rango:index' %}">Return to the homepage.</a><br/>
+    {% else %}
+        Rango says: <strong>Register here!</strong><br/>
+        <form id="user_form" method="post" action="{% url 'rango:register' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+            <input type="submit" name="submit" value="Register" />
 
-<button class="btn btn-primary" id="about-btn">
-    Click me - I'm using JQuery!
-</button>
-<p>This is some text for the JQuery example.</p>
-<div id="msg">
-    Hello! I'm a further example for JQuery testing.
-</div>
+        </form>
+    {% endif %}
 {% endblock %}
