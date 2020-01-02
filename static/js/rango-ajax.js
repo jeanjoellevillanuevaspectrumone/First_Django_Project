@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('#like_btn').click(function() {
+
         var category_id_var;
         category_id_var = $(this).attr('data-categoryid');
 
@@ -22,8 +23,11 @@ $(document).ready(function() {
               })
     });
 
-    $('.rango-page-add').click(function() {
-        var categoryid = $(this).attr('data-categoryid');
+    /* Code added for handling page add clicks */
+    $('.rang-page-add').click(function() {
+
+        var categoryid;
+        categoryid = $(this).attr('data-category-id');
         var title = $(this).attr('data-title');
         var url = $(this).attr('data-url');
         var clickedButton = $(this);
@@ -36,5 +40,6 @@ $(document).ready(function() {
               })
 
     });
+    /* End code addition */
 
 });

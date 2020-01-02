@@ -83,8 +83,7 @@ class AddCategoryView(View):
 
         if form.is_valid():
             form.save(commit=True)
-            index = IndexView().get(request)
-            return index
+            return IndexView().get(request)
         else:
             print(form.errors)
 
@@ -284,6 +283,7 @@ class CategorySuggestionView(View):
 class SearchAddPageView(View):
     @method_decorator(login_required)
     def get(self, request):
+        # import pdb; pdb.set_trace()
         category_id = request.GET['category_id']
         title = request.GET['title']
         url = request.GET['url']
