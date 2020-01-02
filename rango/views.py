@@ -17,6 +17,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from rango.models import UserProfile
 
+
+
 class IndexView(View):
     def get(self, request):
         category_list = Category.objects.order_by('-likes')[:5]
@@ -68,6 +70,7 @@ class ShowCategoryView(View):
 
         return render(request, 'rango/category.html', context_dict)
 
+
 class AddCategoryView(View):
     @method_decorator(login_required)
     def get(self, request):
@@ -80,10 +83,11 @@ class AddCategoryView(View):
 
         if form.is_valid():
             form.save(commit=True)
-            return index(request)
-
+            index = IndexView().get(request)
+            return index
         else:
             print(form.errors)
+
         return render(request, 'rango/add_category.html', {'form': form})
 
 class AddPageView(View):
