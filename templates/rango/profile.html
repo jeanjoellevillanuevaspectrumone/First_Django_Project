@@ -8,6 +8,7 @@
 {% block body_block %}
     <div class="jumbotron p-4">
         <div class="container">
+
             <h1 class="jumbotron-heading">{{ selecteduser.username }}'s Profile</h1>
         </div>
     </div>
@@ -31,6 +32,14 @@
                 <strong>Website:</strong>
                 <a href="{{ userprofile.website }}">{{ userprofile.website }}</a>
             </p>
+            {% endif %}
+            {% if userprofile.music %}
+                <audio controls>
+                  <source src="{{ MEDIA_URL }}{{ userprofile.music }}" type="audio/mp3">
+                Your browser does not support the audio element.
+                </audio>
+            {% else %}
+                {{ selecteduser.username }} is too lazy to upload a song.
             {% endif %}
         </div>
         </div>
